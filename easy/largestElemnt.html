@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Largest Element Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #container {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Largest Element Finder</h2>
+    <label for="numbers">Enter numbers (comma-separated):</label>
+    <input type="text" id="numbers" placeholder="Enter numbers">
+    <br><br>
+    <button id="find-btn">Find Largest Element</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function findLargestElement(numbers) {
+      if (numbers.length === 0) {
+        return null;
+      }
+      let largestNum = numbers[0];
+      for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > largestNum) {
+          largestNum = numbers[i];
+        }
+      }
+      return largestNum;
+    }
+
+    document.getElementById('find-btn').addEventListener('click', () => {
+      const numbersInput = document.getElementById('numbers').value;
+      const numbers = numbersInput.split(',').map(Number);
+      const largest = findLargestElement(numbers);
+      if (largest === null) {
+        document.getElementById('result').innerText = 'No numbers entered.';
+      } else {
+        document.getElementById('result').innerText = `The largest element is: ${largest}`;
+      }
+    });
+  </script>
+</body>
+</html>

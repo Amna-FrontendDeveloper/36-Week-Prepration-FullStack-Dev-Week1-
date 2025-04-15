@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+</style>
+<body>
+    <h1>Sum Calculator</h1>
+    <input type="number" id="input-n" placeholder="Enter a number">
+    <button id="calculate-btn">Calculate Sum</button>
+    <div id="result"></div>
+
+   <script>
+    const inputN = document.getElementById('input-n');
+const calculateBtn = document.getElementById('calculate-btn');
+const resultDiv = document.getElementById('result');
+
+calculateBtn.addEventListener('click', () => {
+    const n = parseInt(inputN.value);
+    if (isNaN(n) || n < 1) {
+        resultDiv.textContent = 'Please enter a positive integer.';
+        return;
+    }
+
+    const startTime = Date.now();
+    const sum = calculateSum(n);
+    const endTime = Date.now();
+    const timeTaken = (endTime - startTime) / 1000; // Convert to seconds
+
+    resultDiv.textContent = `Sum: ${sum}, Time taken: ${timeTaken} seconds`;
+});
+
+function calculateSum(n) {
+    let sum = 0;
+    for (let i = 1; i <= n; i++) {
+        sum += i;
+    }
+    return sum;
+}
+   </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #616161;
+}
+.counter{
+    margin: 10vw;
+}
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+button {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.result {
+    font-size: 18px;
+    margin-top: 10px;
+}
+</style>
+<body>
+
+    <div class="counter">
+        <h3>Vowel Counter</h3>
+        <input type="text" id="input-field">
+        <button id="count-btn">Count Vowels</button>
+        <div class="result">
+            <span>Vowels = </span>
+            <span id="vowel-count">0</span>
+        </div>
+    </div>
+
+    <script>
+        function countVowels(str) {
+    const vowels = 'aeiouAEIOU';
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (vowels.includes(str[i])) {
+            count++;
+        }
+    }
+    return count;
+}
+const inputField = document.getElementById('input-field');
+const countBtn = document.getElementById('count-btn');
+const vowelCount = document.getElementById('vowel-count');
+
+
+
+
+
+
+countBtn.addEventListener('click', () => {
+    const text = inputField.value;
+    const count = countVowels(text);
+    vowelCount.textContent = count;
+});
+
+    </script>
+
+</body>
+</html>

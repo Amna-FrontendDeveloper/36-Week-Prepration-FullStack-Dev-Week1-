@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #container {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Transaction Analyzer</h2>
+    <form id="transaction-form">
+      <label for="category">Category:</label>
+      <input type="text" id="category" placeholder="Enter category">
+      <br><br>
+      <label for="price">Price:</label>
+      <input type="number" id="price" placeholder="Enter price">
+      <br><br>
+      <button id="add-btn">Add Transaction</button>
+    </form>
+    <h3>Transactions:</h3>
+    <table id="transaction-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="transaction-body">
+      </tbody>
+    </table>
+    <button id="calculate-btn">Calculate Total Spent</button>
+    <h3>Total Spent by Category:</h3>
+    <table id="result-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Total Spent</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let transactions = [];
+
+    function calculateTotalSpentByCategory(transactions) {
+      const totalByCategory = {};
+      transactions.forEach(item => {
+        const { category, price } = item;
+        totalByCategory[category] = (totalByCategory[category] || 0) + price;
+      });
+      return Object.keys(totalByCategory).map(category => ({ category, totalSpent: totalByCategory[category] }));
+    }
+
+    document.getElementById('add-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      const category = document.getElementById('category').value;
+      const price = parseFloat(document.getElementById('price').value);
+      transactions.push({ category, price });
+      const transactionBody = document.getElementById('transaction-body');
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${category}</td>
+        <td>${price}</td>
+      `;
+      transactionBody.appendChild(row);
+      document.getElementById('category').value = '';
+      document.getElementById('price').value = '';
+    });
+
+    document.getElementById('calculate-btn').addEventListener('click', () => {
+      const result = calculateTotalSpentByCategory(transactions);
+      const resultBody = document.getElementById('result-body');
+      resultBody.innerHTML = '';
+      result.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.category}</td>
+          <td>${item.totalSpent}</td>
+        `;
+        resultBody.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>

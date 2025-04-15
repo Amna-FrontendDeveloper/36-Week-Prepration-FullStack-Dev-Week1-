@@ -1,0 +1,17 @@
+Function Documentation
+__________findLargestElement_____________
+Purpose: Find the largest element in an array of numbers.
+-----
+Use Case: Pass an array of numbers to the function, and it will return the largest number in the array. If the array is empty, it will return null.
+----
+Details:
+
+- The function iterates through the array, comparing each number to the current largest number.
+- If a larger number is found, it updates the largest number.
+- The function returns the largest number found in the array.
+----
+Example:
+
+const numbers = [4, 2, 9, 6, 5];
+const largest = findLargestElement(numbers);
+console.log(largest); // Output: 9

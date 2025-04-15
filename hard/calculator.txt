@@ -1,0 +1,39 @@
+📝 Summary Table
+_____________________________________
+Method |	(Function)
+add(n)	          result mein number add karein
+subtract(n)      	result mein se minus karein
+multiply(n)         	result ko number se multiply
+divide(n)	                result ko number se divide
+clear()	                      result ko reset karein (0 pe le aayen)
+getResult()	                       current result ko return karein
+calculate()	                             full math expression solve karein
+
+
+______________________________________________________________________________________
+
+✅ const cleaned = expression.replace(/\s+/g, '');
+Removes all spaces from the expression.
+Uses a regex (/\s+/g) to find one or more spaces and replace them with '' (nothing).
+
+
+✅ if (/[^0-9+\-*/().]/.test(cleaned))
+This line checks if the expression contains invalid characters.
+
+The regex /[^0-9+\-*/().]/ means:
+
+-- Allow only numbers (0–9)
+
+-- Operators (+, -, *, /)
+
+-- Parentheses ((, ))
+
+-- Dot (.) for decimals if needed
+
+-- If there's anything else, like:
+
+-- letters (a, b, etc.)
+
+-- symbols ($, @, etc.)
+
+-- It throws an error.

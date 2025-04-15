@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anagram Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #container {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #242424;
+      border-radius: 10px;
+      box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Anagram Checker</h2>
+    <label for="str1">String 1:</label>
+    <input type="text" id="str1" placeholder="Enter first string">
+    <br><br>
+    <label for="str2">String 2:</label>
+    <input type="text" id="str2" placeholder="Enter second string">
+    <br><br>
+    <button id="check-btn">Check Anagram</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function isAnagram(str1, str2) {
+      const sortedStr1 = str1.toLowerCase().split('').sort().join('');
+      const sortedStr2 = str2.toLowerCase().split('').sort().join('');
+      return sortedStr1 === sortedStr2;
+    }
+
+    document.getElementById('check-btn').addEventListener('click', () => {
+      const str1 = document.getElementById('str1').value;
+      const str2 = document.getElementById('str2').value;
+      const result = isAnagram(str1, str2);
+      document.getElementById('result').innerText = result ? 'The strings are anagrams.' : 'The strings are not anagrams.';
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+Function Documentation
+calculateTotalSpentByCategory
+Purpose: Calculate the total spent amount for each category in a list of transactions.
+
+Parameters:
+
+- transactions: An array of objects, where each object represents a transaction with category and price properties.
+
+Return Value:
+
+- An array of objects, where each object contains a category and the totalSpent amount for that category.
+
+Details:
+
+- The function iterates through the transactions, grouping the total spent amount by category.
+- If a category is not present in the totalByCategory object, it is initialized with a value of 0.
+- The function returns an array of objects, where each object represents a category and its total spent amount.
+
+Example:
+
+const transactions = [
+  { category: 'Food', price: 10 },
+  { category: 'Food', price: 20 },
+  { category: 'Entertainment', price: 30 },
+  { category: 'Food', price: 15 },
+];

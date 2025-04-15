@@ -1,0 +1,82 @@
+🧠 What this function does
+It checks whether two words or phrases are anagrams of each other.
+
+❓ What’s an anagram?
+An anagram is a word or phrase that is made by rearranging the letters of another word or phrase.
+
+For example:
+
+"listen" and "silent" are anagrams ✅
+
+"hello" and "world" are not ❌
+__________________________________
+
+🧩 The Function Explained
+___________________________________
+function isAnagram(str1, str2) {
+This line defines a function called isAnagram that takes two inputs: str1 and str2 (the two words or phrases you want to compare).
+
+const sortedStr1 = str1.toLowerCase().split('').sort().join('');
+  const sortedStr2 = str2.toLowerCase().split('').sort().join('');
+
+Let’s break this part down using an example:
+
+Let’s say:
+
+str1 = "Listen"
+str2 = "Silent"
+.........Step-by-step:
+1 .toLowerCase()
+Changes "Listen" to "listen" (so that it's not case-sensitive).
+
+2  .split('')
+Turns "listen" into an array of letters:
+['l', 'i', 's', 't', 'e', 'n']
+
+3  .sort()
+Sorts the letters alphabetically:
+['e', 'i', 'l', 'n', 's', 't']
+
+4 .join('')
+Joins the letters back into a string:
+"eilnst"
+
+Now both words become "eilnst" if they are anagrams.
+
+  return sortedStr1 === sortedStr2;
+
+This compares the two sorted strings:
+
+If they are the same, it returns true ✅ (they are anagrams).
+
+If they are different, it returns false ❌ (they are not anagrams).
+
+📦 Full Example
+
+isAnagram("Listen", "Silent"); // true
+isAnagram("Hello", "World");   // false
+__________________________________________________
+
+💬 Final Summary:
+
+This function checks if two words contain the same letters, just in a different order.
+ It ignores uppercase and lowercase differences.
+ If they match after sorting, they are anagrams.
+
+________________________________________________________________________________________
+
+
+
+The time complexity of the isAnagram function is O(n log n) because of the sort() method used to sort the characters in the strings.
+
+Why O(n log n)?
+1. Sorting Algorithm: The sort() method in JavaScript typically uses a sorting algorithm like QuickSort or MergeSort, which have an average time complexity of O(n log n).
+2. String Length: The number of operations performed by the sorting algorithm depends on the length of the string (n). As the string length increases, the number of operations grows logarithmically.
+3. n log n Complexity: The product of the string length (n) and the logarithmic factor (log n) results in a time complexity of O(n log n).
+
+Impact on Performance
+- For short strings, the O(n log n) complexity may not be noticeable.
+- For longer strings, the sorting operation can become a performance bottleneck.
+
+Alternative Approaches
+- Using a hash table or frequency counter can reduce the time complexity to O(n), making it more efficient for large strings.

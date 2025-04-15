@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      background-color: #000000;
+    }
+
+    .calculator {
+      background: #686868;
+      border-radius: 10px;
+      padding: 35px;
+      width: 300px;
+      box-shadow: 0 0 10px #4b4444;
+      color: #020202;
+    }
+
+    .screen {
+      background-color: #26302a;
+
+      width: 100%;
+      height: 50px;
+      font-size: 24px;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #2c2626;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #8f7c7c;
+    }
+
+    .operator {
+      background: #071a0bb4;
+    }
+
+    .equal {
+      background: #42ba96;
+      color: #fff;
+    }
+
+    .clear {
+      background: #f50b0b;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" class="screen" id="screen" readonly>
+  <div class="buttons">
+    <button class="clear">C</button>
+    <button>(</button>
+    <button>)</button>
+    <button class="operator">/</button>
+
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button class="operator">*</button>
+
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button class="operator">-</button>
+
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button class="operator">+</button>
+
+    <button>0</button>
+    <button>.</button>
+    <button class="equal">=</button>
+  </div>
+</div>
+
+<script>
+  //Calculator class
+  class Calculator {
+    constructor() {
+      this.result = 0;
+    }
+
+    clear() {
+      this.result = 0;
+    }
+
+    getResult() {
+      return this.result;
+    }
+
+    calculate(expression) {
+      try {
+        const cleaned = expression.replace(/\s+/g, '');
+        if (/[^0-9+\-*/().]/.test(cleaned)) {
+          throw new Error("Invalid characters in expression!");
+        }
+        const value = eval(cleaned);
+        this.result = value;
+        return value;
+      } catch (err) {
+        return "Error";
+      }
+    }
+  }
+
+  // UI Logic
+  const calc = new Calculator();
+  const screen = document.getElementById('screen');
+  const buttons = document.querySelectorAll('button');
+
+  let expression = '';
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const value = btn.textContent;
+
+      if (value === 'C') {
+        expression = '';
+        screen.value = '';
+        calc.clear();
+      } else if (value === '=') {
+        const result = calc.calculate(expression);
+        screen.value = result;
+        expression = String(result); // update expression with result
+      } else {
+        expression += value;
+        screen.value = expression;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
