@@ -19,7 +19,7 @@ function calculateTime(n) {
     }
     const endTime = Date.now();
 
-    let totalTime = (endTime - startTime);
+    let totalTime = (endTime - startTime)/1000;
 
     return 0.01;
 }

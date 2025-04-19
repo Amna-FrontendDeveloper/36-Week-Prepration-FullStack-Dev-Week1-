@@ -5,9 +5,9 @@
 
 function isPalindrome(str) {
 
-  str = str.tolowerCase();
-  str = str.spilt('').reverse().join('');
-if(str ===  str.spilt('').reverse().join(''))
+  str = str.toLowerCase();
+  str = str.split('').reverse().join('');
+if(str ===  str.split('').reverse().join(''))
   return true;
 }
 
